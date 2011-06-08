@@ -52,5 +52,4 @@ class Gondola
       end
     end
   end
-  #puts 'testing colors'.foreground(:magenta)
 end
