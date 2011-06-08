@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 gem "sauce", ">= 0.19.0"
 gem "parallel", "~> 0.5.2"
+gem "rainbow"
 
 group :development do
   gem "shoulda", ">= 0"
