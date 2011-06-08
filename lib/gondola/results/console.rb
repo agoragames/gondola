@@ -15,8 +15,10 @@ class Gondola
           puts "started with #{browser_string}".foreground(:cyan)
         when :not_started
           puts "failed to start on #{browser_string}".foreground(:red)
-        when :passed, :failed
-          puts "has completed with #{result[:errors].size} error(s) on #{browser_string}".foreground(:green)
+        when :passed
+          puts "has completed with 0 errors on #{browser_string}".foreground(:green)
+        when :failed
+          puts "has completed with #{result[:errors].size} error(s) on #{browser_string}".foreground(:red)
         else
           puts "Unknown status code".foreground(:blue)
         end
@@ -26,9 +28,9 @@ class Gondola
         puts
         results.each do |result|
           puts "Sauce Labs ID : #{result[:id]}"
-          puts "Test Name     : #{result[:name]}"
+          puts "Test Name     : #{result[:name]}".foreground(:magenta)
           puts "Browser       : #{result[:browser].values.join(" ")}"
-          puts "Status        : Test #{result[:status].to_s.capitalize} - #{result[:errors].size} error(s)".foreground(:red)
+          puts "Status        : Test #{result[:status].to_s.capitalize} - #{result[:errors].size} error(s)"
           if result[:status] == :failed
             result[:errors].each_with_index do |error,i|
               puts "- Error #{i+1}, Command number #{error[:cmd_num]}:".foreground(:red)
