@@ -30,12 +30,12 @@ class Gondola
           puts "Sauce Labs ID : #{result[:id]}"
           puts "Test Name     : #{result[:name]}".foreground(:magenta)
           puts "Browser       : #{result[:browser].values.join(" ")}"
-           if result[:status] == :passed
-             puts "Status        : Test #{result[:status].to_s.capitalize}".foreground(:green)
-          
-           elsif result[:status] == :failed
-             puts "Status        : Test #{result[:status].to_s.capitalize} - #{result[:errors].size} error(s)".foreground(:red)
-             
+          if result[:status] == :passed
+            puts "Status        : Test #{result[:status].to_s.capitalize}".foreground(:green)
+
+          elsif result[:status] == :failed
+            puts "Status        : Test #{result[:status].to_s.capitalize} - #{result[:errors].size} error(s)".foreground(:red)
+
             result[:errors].each_with_index do |error,i|
               puts "- Error #{i+1}, Command number #{error[:cmd_num]}:".foreground(:red)
 
