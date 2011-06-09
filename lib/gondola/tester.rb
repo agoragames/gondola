@@ -29,13 +29,13 @@ class Gondola
         @status = :not_started
         @errors << {
           :cmd_num => 0,
-          :command => "#{SELENIUM_OBJECT}.start",
+          :command => {:ruby => "#{SELENIUM_OBJECT}.start"},
           :error => e.message
         }
       rescue Timeout::Error => e
         @errors << {
           :cmd_num => 0,
-          :command => "#{SELENIUM_OBJECT}.start",
+          :command => {:ruby => "#{SELENIUM_OBJECT}.start"},
           :error => "ERROR: Command timed out"
         }
       end
@@ -73,13 +73,13 @@ class Gondola
       rescue ::Selenium::Client::CommandError => e
         @errors << {
           :cmd_num => 0,
-          :command => "",
+          :command => {:ruby => ""},
           :error => e.message
         }
       rescue Timeout::Error => e
         @errors << {
           :cmd_num => 0,
-          :command => "",
+          :command => {:ruby => ""},
           :error => "ERROR: Command timed out"
         }
       end
