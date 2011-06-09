@@ -8,7 +8,7 @@ class Gondola
     class Console
       def self.change(result)
         browser_string = result[:browser].values.join(" ")
-        print "#{result[:id]}: \"#{result[:name]}\" "
+        print "#{result[:id]}: \"#{result[:name]}\" ".foreground(:magenta)
 
         case result[:status]
         when :in_progress
@@ -30,8 +30,12 @@ class Gondola
           puts "Sauce Labs ID : #{result[:id]}"
           puts "Test Name     : #{result[:name]}".foreground(:magenta)
           puts "Browser       : #{result[:browser].values.join(" ")}"
-          puts "Status        : Test #{result[:status].to_s.capitalize} - #{result[:errors].size} error(s)"
-          if result[:status] == :failed
+           if result[:status] == :passed
+             puts "Status        : Test #{result[:status].to_s.capitalize}".foreground(:green)
+          
+           elsif result[:status] == :failed
+             puts "Status        : Test #{result[:status].to_s.capitalize} - #{result[:errors].size} error(s)".foreground(:red)
+             
             result[:errors].each_with_index do |error,i|
               puts "- Error #{i+1}, Command number #{error[:cmd_num]}:".foreground(:red)
 
